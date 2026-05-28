@@ -1,0 +1,74 @@
+{
+  "name": "ai-sidepane",
+  "displayName": "AI Sidepane",
+  "description": "A portable AI assistant sidebar.",
+  "version": "0.1.0",
+  "publisher": "custom",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onView:ai-sidepane-view"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "ai-assistant",
+          "title": "AI Assistant",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "ai-assistant": [
+        {
+          "type": "webview",
+          "id": "ai-sidepane-view",
+          "name": "Chat"
+        }
+      ]
+    },
+    "walkthroughs": [
+      {
+        "id": "holyclause.welcome",
+        "title": "Welcome to HolyClaude",
+        "description": "Learn how to use your new AI-powered litigation workspace.",
+        "steps": [
+          {
+            "id": "openSidebar",
+            "title": "Open HolyClaude",
+            "description": "Click the star icon in the activity bar to start a conversation with the AI assistant.",
+            "media": {
+              "svg": "media/icon.svg"
+            }
+          },
+          {
+            "id": "refactorCode",
+            "title": "Smart Refactoring",
+            "description": "Select any text in the editor and HolyClaude will automatically see it as context for your next request.",
+            "media": {
+              "svg": "media/icon.svg"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/node": "18.x",
+    "typescript": "^5.1.3",
+    "@vscode/vsce": "^2.19.0"
+  }
+}

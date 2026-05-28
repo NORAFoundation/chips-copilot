@@ -1,0 +1,72 @@
+{
+  "_comment": "Claude Code settings for CHIPS Copilot. Sets tool permissions tuned for a parent in a legal proceeding — bias toward safety and confirmation.",
+
+  "permissions": {
+    "allow": [
+      "Read(./**)",
+      "Bash(shasum:*)",
+      "Bash(sha256sum:*)",
+      "Bash(exiftool:*)",
+      "Bash(pikepdf:*)",
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(rg:*)",
+      "Bash(wc:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(cat:*)",
+      "Bash(diff:*)",
+      "Bash(date:*)",
+      "Bash(scripts/*)",
+      "Write(./07-drafts/**)",
+      "Write(./08-research/**)",
+      "Write(./09-chronology/**)",
+      "Write(./_session-log.md)",
+      "Write(./_evidence-hashes.md)",
+      "Edit(./07-drafts/**)",
+      "Edit(./08-research/**)",
+      "Edit(./09-chronology/**)",
+      "WebFetch(domain:scholar.google.com)",
+      "WebFetch(domain:courtlistener.com)",
+      "WebFetch(domain:law.cornell.edu)",
+      "WebFetch(domain:justia.com)",
+      "WebFetch(domain:*.gov)",
+      "WebFetch(domain:*.uscourts.gov)"
+    ],
+    "ask": [
+      "Write(./05-evidence/**)",
+      "Write(./01-orders/**)",
+      "Write(./02-petitions-filings/**)",
+      "Edit(./05-evidence/**)",
+      "Edit(./01-orders/**)",
+      "Bash(rm:*)",
+      "Bash(mv:*)",
+      "Bash(cp:*)",
+      "Bash(git:*)",
+      "mcp__gmail__send_*",
+      "mcp__playwright__*"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(:*--force*)",
+      "Bash(sudo:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Read(/etc/**)",
+      "Read(/home/**/.ssh/**)",
+      "Read(**/.env)",
+      "Read(**/credentials**)"
+    ]
+  },
+
+  "defaultMode": "acceptEdits",
+
+  "env": {
+    "CHIPS_CASE_DIR": ".",
+    "CHIPS_VERSION": "1.1"
+  },
+
+  "model": "claude-opus-4-7",
+  "_fallback_models": ["claude-sonnet-4-6", "claude-haiku-4-5"]
+}

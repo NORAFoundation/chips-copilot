@@ -1,0 +1,54 @@
+{
+  "name": "custom-ide",
+  "version": "0.1.0",
+  "license": "MIT",
+  "dependencies": {
+    "@theia/core": "1.48.0",
+    "@theia/editor": "1.48.0",
+    "@theia/filesystem": "1.48.0",
+    "@theia/monaco": "1.48.0",
+    "@theia/navigator": "1.48.0",
+    "@theia/plugin-ext-vscode": "1.48.0",
+    "@theia/workspace": "1.48.0",
+    "@theia/electron": "1.48.0"
+  },
+  "resolutions": {
+    "@vscode/ripgrep": "1.15.9"
+  },
+  "devDependencies": {
+    "@theia/cli": "1.48.0",
+    "electron": "^23.2.4"
+  },
+  "scripts": {
+    "start": "theia start --plugins=local-dir:./plugins",
+    "build": "theia build",
+    "harden": "rm -rf .theia && rm -rf plugins/*.log && theia build --mode production"
+  },
+  "theia": {
+    "target": "electron",
+    "frontend": {
+      "config": {
+        "applicationName": "HolyClaude IDE",
+        "applicationLogo": "media/logo.svg",
+        "defaultTheme": "dark",
+        "styles": [
+          "media/splash.css"
+        ],
+        "preferences": {
+          "files.autoSave": "on",
+          "editor.fontSize": 14,
+          "workbench.sideBar.location": "left",
+          "workbench.statusBar.visible": true,
+          "workbench.activityBar.visible": true,
+          "theia.menu.main.hidden": [
+            "debug",
+            "terminal",
+            "help",
+            "run",
+            "selection"
+          ]
+        }
+      }
+    }
+  }
+}

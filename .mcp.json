@@ -1,0 +1,96 @@
+{
+  "_comment": "CHIPS Copilot MCP server configuration. v1.1 — package names verified against npm registry on 2026-05-28. Fill in API keys / paths for the ones you want to enable. Comment out unused servers.",
+
+  "mcpServers": {
+
+    "courtlistener": {
+      "_purpose": "Federal and state case law verification. PRIMARY citation verification tool. Free API token from https://www.courtlistener.com/help/api/",
+      "_npm_pkg": "@us-legal-tools/courtlistener-sdk",
+      "command": "npx",
+      "args": ["-y", "@us-legal-tools/courtlistener-sdk", "mcp"],
+      "env": {
+        "COURTLISTENER_API_TOKEN": "${COURTLISTENER_API_TOKEN}"
+      }
+    },
+
+    "gmail": {
+      "_purpose": "Retrieve case-related correspondence, draft replies. OAuth on first use; credentials cached to GMAIL_CREDENTIALS_PATH.",
+      "_npm_pkg": "@monsoft/mcp-gmail",
+      "command": "npx",
+      "args": ["-y", "@monsoft/mcp-gmail"],
+      "env": {
+        "GMAIL_CREDENTIALS_PATH": "${HOME}/.config/chips-copilot/gmail-credentials.json"
+      }
+    },
+
+    "filesystem": {
+      "_purpose": "Local case-file access scoped to the case directory. Sandboxed to CHIPS_CASE_DIR.",
+      "_npm_pkg": "@modelcontextprotocol/server-filesystem",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "${CHIPS_CASE_DIR}"
+      ]
+    },
+
+    "dropbox": {
+      "_purpose": "Optional evidence-vault sync. Only enable if you back up case data to Dropbox.",
+      "_npm_pkg": "@missionsquad/mcp-dropbox",
+      "_disabled_unless_configured": true,
+      "command": "npx",
+      "args": ["-y", "@missionsquad/mcp-dropbox"],
+      "env": {
+        "DROPBOX_ACCESS_TOKEN": "${DROPBOX_ACCESS_TOKEN}"
+      }
+    },
+
+    "firecrawl": {
+      "_purpose": "Web page content extraction for legal research (statutes, court rules, news coverage). Free tier from https://firecrawl.dev",
+      "_npm_pkg": "firecrawl-mcp",
+      "command": "npx",
+      "args": ["-y", "firecrawl-mcp"],
+      "env": {
+        "FIRECRAWL_API_KEY": "${FIRECRAWL_API_KEY}"
+      }
+    },
+
+    "web-fetch": {
+      "_purpose": "Generic web fetch returning clean markdown. Alternative to firecrawl; supports YouTube transcripts.",
+      "_npm_pkg": "mcp-fetch-server",
+      "command": "npx",
+      "args": ["-y", "mcp-fetch-server"]
+    },
+
+    "playwright": {
+      "_purpose": "Browser automation for court e-filing systems (efile.wicourts.gov, PACER, state-specific e-filing). NEVER SUBMITS without explicit user confirmation.",
+      "_npm_pkg": "@playwright/mcp",
+      "_safety_note": "This server can interact with court systems. The agent must require explicit user confirmation including the filing name and venue before any submission action. .claude/settings.json sets `mcp__playwright__*` to `ask`.",
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp"]
+    },
+
+    "sqlite-case-db": {
+      "_purpose": "Optional local SQLite for case database (chronology, witnesses, evidence index).",
+      "_npm_pkg": "mcp-sqlite",
+      "_disabled_unless_configured": true,
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-sqlite",
+        "${CHIPS_CASE_DIR}/case.sqlite"
+      ]
+    },
+
+    "github": {
+      "_purpose": "Optional version control for case directory. Recommended for technical users only — see SECURITY guidance in INSTALL.md before pointing this at a private case repo.",
+      "_npm_pkg": "@modelcontextprotocol/server-github",
+      "_disabled_unless_configured": true,
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      }
+    }
+  }
+}

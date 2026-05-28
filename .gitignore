@@ -1,0 +1,67 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+
+# Build artifacts (sources of truth; do not commit compiled output)
+ai-extension/dist/
+ai-extension/out/
+ai-extension/*.vsix
+custom-ide/lib/
+custom-ide/src-gen/
+custom-ide/.theia/
+custom-ide/.browser_modules/
+custom-ide/dist/
+custom-ide/build/
+custom-ide/*.app/
+custom-ide/*.dmg
+custom-ide/*.zip
+custom-ide/yarn.lock
+
+# Local Claude Code state (per-user; never ship)
+.claude/settings.local.json
+.claude/.session/
+.claude/projects/
+
+# Case data — NEVER commit any user case content
+05-evidence/
+06-transcripts/
+12-financial/
+_session-log.md
+_evidence-hashes.md
+case.sqlite
+case.sqlite-journal
+
+# Secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+gmail-credentials.json
+**/credentials.json
+
+# Backups
+*.bak.*
+chips-backups/
+
+# OS / editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Test artifacts
+coverage/
+.nyc_output/
+*.log

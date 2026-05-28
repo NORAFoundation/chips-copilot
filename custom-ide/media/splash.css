@@ -1,0 +1,29 @@
+#theia-loading-screen {
+    background-color: #1e1e1e !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ce9178;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+#theia-loading-screen::before {
+    content: 'HOLYCLAUDE';
+    font-size: 2.5rem;
+    font-weight: bold;
+    letter-spacing: 0.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(206, 145, 120, 0.5);
+}
+
+#theia-loading-screen::after {
+    content: 'Initializing AI Workspace...';
+    font-size: 0.8rem;
+    color: #888;
+    text-transform: uppercase;
+}
+
+.theia-preload-spinner {
+    border-top-color: #ce9178 !important;
+}

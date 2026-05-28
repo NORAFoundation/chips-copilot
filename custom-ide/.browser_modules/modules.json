@@ -1,0 +1,17 @@
+{
+  "node-pty": {
+    "originalLocation": "/Users/pat/chips-copilot/custom-ide/node_modules/node-pty"
+  },
+  "keytar": {
+    "originalLocation": "/Users/pat/chips-copilot/custom-ide/node_modules/keytar"
+  },
+  "native-keymap": {
+    "originalLocation": "/Users/pat/chips-copilot/custom-ide/node_modules/native-keymap"
+  },
+  "drivelist": {
+    "originalLocation": "/Users/pat/chips-copilot/custom-ide/node_modules/drivelist"
+  },
+  "nsfw": {
+    "originalLocation": "/Users/pat/chips-copilot/custom-ide/node_modules/nsfw"
+  }
+}

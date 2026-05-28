@@ -1,0 +1,12 @@
+{
+  "_comment": "Optional per-machine override of .claude/settings.json. Claude Code merges this on top of settings.json. NEVER commit your real settings.local.json — it is gitignored. Copy this file to .claude/settings.local.json and edit as needed.",
+
+  "permissions": {
+    "allow": [
+      "_example: Bash(open:*)"
+    ],
+    "ask": [
+      "_example: Write(./04-correspondence/**)"
+    ]
+  }
+}

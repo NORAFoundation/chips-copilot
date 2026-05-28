@@ -1,0 +1,125 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "_comment": "OpenCode configuration for CHIPS Copilot v1.1 — all commands and modes registered.",
+
+  "model": "anthropic/claude-opus-4-7",
+  "fallbackModels": ["anthropic/claude-sonnet-4-6"],
+
+  "instructions": ["AGENTS.md", "CLAUDE.md"],
+
+  "permissions": {
+    "edit": "ask",
+    "bash": {
+      "shasum *": "allow",
+      "sha256sum *": "allow",
+      "exiftool *": "allow",
+      "pikepdf *": "allow",
+      "ls *": "allow",
+      "find *": "allow",
+      "grep *": "allow",
+      "rg *": "allow",
+      "cat *": "allow",
+      "head *": "allow",
+      "tail *": "allow",
+      "wc *": "allow",
+      "diff *": "allow",
+      "date *": "allow",
+      "./scripts/* *": "allow",
+      "rm *": "ask",
+      "mv *": "ask",
+      "cp *": "ask",
+      "git *": "ask",
+      "rm -rf *": "deny",
+      "sudo *": "deny",
+      "curl *": "deny",
+      "wget *": "deny",
+      "*": "ask"
+    },
+    "webfetch": {
+      "scholar.google.com": "allow",
+      "courtlistener.com": "allow",
+      "law.cornell.edu": "allow",
+      "justia.com": "allow",
+      "case.law": "allow",
+      "*.gov": "allow",
+      "*.uscourts.gov": "allow",
+      "*": "ask"
+    }
+  },
+
+  "mcp": {
+    "courtlistener": {
+      "type": "local",
+      "command": ["npx", "-y", "@us-legal-tools/courtlistener-sdk", "mcp"],
+      "environment": {
+        "COURTLISTENER_API_TOKEN": "{env:COURTLISTENER_API_TOKEN}"
+      }
+    },
+    "filesystem": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-filesystem", "."]
+    },
+    "firecrawl": {
+      "type": "local",
+      "command": ["npx", "-y", "firecrawl-mcp"],
+      "environment": {
+        "FIRECRAWL_API_KEY": "{env:FIRECRAWL_API_KEY}"
+      }
+    },
+    "gmail": {
+      "type": "local",
+      "command": ["npx", "-y", "@monsoft/mcp-gmail"],
+      "environment": {
+        "GMAIL_CREDENTIALS_PATH": "{env:HOME}/.config/chips-copilot/gmail-credentials.json"
+      }
+    },
+    "playwright": {
+      "type": "local",
+      "command": ["npx", "-y", "@playwright/mcp"]
+    }
+  },
+
+  "command": {
+    "analyze-pdf":           { "template": ".claude/commands/analyze-pdf.md" },
+    "analyze-order":         { "template": ".claude/commands/analyze-order.md" },
+    "analyze-report":        { "template": ".claude/commands/analyze-report.md" },
+    "extract-admissions":    { "template": ".claude/commands/extract-admissions.md" },
+    "chronology":            { "template": ".claude/commands/chronology.md" },
+    "draft-motion":          { "template": ".claude/commands/draft-motion.md" },
+    "draft-email":           { "template": ".claude/commands/draft-email.md" },
+    "draft-declaration":     { "template": ".claude/commands/draft-declaration.md" },
+    "draft-records-request": { "template": ".claude/commands/draft-records-request.md" },
+    "draft-discovery":       { "template": ".claude/commands/draft-discovery.md" },
+    "draft-witness-prep":    { "template": ".claude/commands/draft-witness-prep.md" },
+    "compliance-audit":      { "template": ".claude/commands/compliance-audit.md" },
+    "pre-demand":            { "template": ".claude/commands/pre-demand.md" },
+    "federal-complaint":     { "template": ".claude/commands/federal-complaint.md" },
+    "exhibit-package":       { "template": ".claude/commands/exhibit-package.md" },
+    "index-evidence":        { "template": ".claude/commands/index-evidence.md" },
+    "battle-map":            { "template": ".claude/commands/battle-map.md" },
+    "case-theory":           { "template": ".claude/commands/case-theory.md" },
+    "endgame":               { "template": ".claude/commands/endgame.md" },
+    "leverage-analysis":     { "template": ".claude/commands/leverage-analysis.md" },
+    "find-precedent":        { "template": ".claude/commands/find-precedent.md" },
+    "stress-test":           { "template": ".claude/commands/stress-test.md" },
+    "cite-check":            { "template": ".claude/commands/cite-check.md" },
+    "check-in":              { "template": ".claude/commands/check-in.md" },
+    "triage":                { "template": ".claude/commands/triage.md" },
+    "preserve":              { "template": ".claude/commands/preserve.md" }
+  },
+
+  "mode": {
+    "forensic-analyzer":    { "prompt": ".claude/agents/forensic-analyzer.md" },
+    "motion-drafter":       { "prompt": ".claude/agents/motion-drafter.md" },
+    "brief-drafter":        { "prompt": ".claude/agents/brief-drafter.md" },
+    "drafting-specialist":  { "prompt": ".claude/agents/drafting-specialist.md" },
+    "statutory-auditor":    { "prompt": ".claude/agents/statutory-auditor.md" },
+    "adversarial-reviewer": { "prompt": ".claude/agents/adversarial-reviewer.md" },
+    "citation-verifier":    { "prompt": ".claude/agents/citation-verifier.md" },
+    "case-law-researcher":  { "prompt": ".claude/agents/case-law-researcher.md" },
+    "evidence-organizer":   { "prompt": ".claude/agents/evidence-organizer.md" },
+    "evidence-manager":     { "prompt": ".claude/agents/evidence-manager.md" },
+    "strategist":           { "prompt": ".claude/agents/strategist.md" },
+    "wellbeing-checker":    { "prompt": ".claude/agents/wellbeing-checker.md" }
+  }
+}
