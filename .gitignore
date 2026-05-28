@@ -65,3 +65,4 @@ chips-backups/
 coverage/
 .nyc_output/
 *.log
+.github/workflows/
