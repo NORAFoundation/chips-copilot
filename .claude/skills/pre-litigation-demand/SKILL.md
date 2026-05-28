@@ -64,7 +64,7 @@ CC:
 
 Specific enough to identify, generic enough not to give away strategy:
 
-"Notice of Potential Claims Arising from Pierce County DHS Case 2024JC000051"
+"Notice of Potential Claims Arising from [County] DHS Case [NN-JC-NNNNNN]"
 
 NOT: "Section 1983 fabrication and First Amendment retaliation claims"
 
