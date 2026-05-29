@@ -5,6 +5,34 @@ All notable changes to CHIPS Copilot are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] — 2026-05-29
+
+### Added — built-in walkthrough layer
+- `WELCOME.md` (repo root) — human-language landing doc; what the tool is, the cold-to-triage-memo flow, the hard rules, the "if you can't keep going" guidance.
+- `case-template/START_HERE.md` — first thing a new user sees inside their case directory; tells them exactly which command to type.
+- `/start` — interactive onboarding command. Detects new vs. returning user, walks through case directory setup, delegates to `/intake` and `/setup-jurisdiction`, ends with `/triage`. Crisis-aware (routes to `/check-in` on distress signals).
+- `/next` — "what should I do right now" — reads master index, session log, chronology, recent triage, and produces ONE specific next action with rationale, time estimate, how-to, and a 10-minute fallback.
+- `/help` — full 31-command index organized by user need (analyzing a document / writing something / thinking strategically / organizing evidence / researching law / not sure). Includes common command chains.
+- `/intake` — interactive case-identity wizard. Fills `00-MASTER-INDEX.md` conversationally without inventing values; unknowns marked `[unknown — to confirm]`.
+- `/setup-jurisdiction` — locks state, county, court, recording-consent law, notice-of-claim deadline, ICWA flag. Writes `_jurisdiction.md`. Referenced by every later draft.
+
+### Fixed — case-template gaps
+The README and `00-MASTER-INDEX.md` referenced folders and files that didn't actually exist in the template — running `init-case.sh` left users with broken references. Added:
+- `case-template/05-evidence/_README.md` — the chain-of-custody rules folder.
+- `case-template/06-transcripts/_README.md` — hearing + recording transcripts.
+- `case-template/12-financial/_README.md` — case expenses + §1983 damages tracking.
+- `case-template/_session-log.md` — append-only session log seed.
+- `case-template/_evidence-hashes.md` — chain-of-custody hash registry seed.
+
+### Changed
+- `.gitignore` — added `!case-template/...` exception rules. Without these the v1.1 ignore patterns (`05-evidence/`, `06-transcripts/`, `12-financial/`, `_session-log.md`, `_evidence-hashes.md`) silently stripped the same paths out of the template at commit time, which is why those folders never made it into v1.1. User case directories remain ignored.
+- `scripts/init-case.sh` — final "Next steps" output rewritten. Now explicitly tells the user the four steps including the literal `/start` command, instead of saying "edit master index in $EDITOR" (which assumed knowledge users don't have).
+- `README.md` — replaced the v1.1 capability-module lead with a Quickstart section showing the 4-step cold-start path. Updated counts: 31 slash commands, 4 utility scripts.
+
+### Notes
+- All v1.2 additions are additive — every v1.1 command still works the same way.
+- The walkthrough layer exists to remove the need for the maintainer to manually walk each new user through the system. Cold-to-triage-memo should now take ~15 minutes without external guidance.
+
 ## [1.1.0] — 2026-05-28
 
 ### Added

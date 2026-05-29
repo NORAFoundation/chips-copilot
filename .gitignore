@@ -41,6 +41,18 @@ _evidence-hashes.md
 case.sqlite
 case.sqlite-journal
 
+# Exception: the case-template/ ships these as empty seed files so init-case.sh
+# has a complete template. They are intentionally tracked. Anything a USER puts
+# in their own case directory remains ignored by the patterns above.
+!case-template/05-evidence/
+!case-template/05-evidence/_README.md
+!case-template/06-transcripts/
+!case-template/06-transcripts/_README.md
+!case-template/12-financial/
+!case-template/12-financial/_README.md
+!case-template/_session-log.md
+!case-template/_evidence-hashes.md
+
 # Secrets
 .env
 .env.local

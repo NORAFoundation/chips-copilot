@@ -1,17 +1,39 @@
-# CHIPS Copilot v1.1
+# CHIPS Copilot v1.2
 
 A CLI agent configuration for parents navigating Child Protective Services / CHIPS / dependency / TPR proceedings. Deploys on Claude Code, OpenCode, and Codex CLI.
 
-**v1.1 expansion**: Four new capability modules — **evidence management**, **drafting** (beyond motions), **strategy**, and **case law research** — each with a dedicated skill, subagent, and slash commands.
+**New in v1.2 — built-in walkthrough.** Cold start to triage memo in one command. See `WELCOME.md` for the 30-second pitch, then run `/start` inside any case directory. Added: `/start`, `/next`, `/help`, `/intake`, `/setup-jurisdiction`. Filled the case-template gaps (`05-evidence/`, `06-transcripts/`, `12-financial/`, `_session-log.md`, `_evidence-hashes.md`).
 
 | Total | Component |
 |------:|-----------|
-|  26   | Slash commands |
+|  31   | Slash commands |
 |  12   | Specialized subagents |
 |  12   | Domain skills |
 |   9   | MCP server integrations |
-|   3   | Utility scripts |
+|   4   | Utility scripts |
 |  16   | Case-template subfolders |
+
+## Quickstart — cold to triage memo in 15 minutes
+
+```bash
+# 1. Get the toolkit
+git clone https://github.com/noraslaw/chips-copilot ~/chips-copilot
+
+# 2. Make YOUR case directory (separate from the tool)
+~/chips-copilot/scripts/init-case.sh ~/Documents/my-case
+export CHIPS_CASE_DIR="$HOME/Documents/my-case"   # add to ~/.zshrc to persist
+
+# 3. Launch the AI tool inside the case directory
+cd "$CHIPS_CASE_DIR"
+claude          # or: opencode    or: codex
+
+# 4. Inside the tool, ONE command:
+#       /start
+```
+
+`/start` walks you through case identity → jurisdiction → first triage memo. After that, your day-to-day loop is just `/next` (one specific next action) or whichever `/draft-*` / `/analyze-*` you need.
+
+If you've never used a CLI agent before: read `WELCOME.md` first — that's the human-language explanation. Read `INSTALL.md` if step 1–3 hit a snag.
 
 ## What you get
 
